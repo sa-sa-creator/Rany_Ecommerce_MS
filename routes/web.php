@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +26,23 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
+
     return Inertia::render('Test');
 })->name('test');
+
+Route::get('/test', function () {
+    return Inertia::render('Test');
+})->name('test');
+
+Route::get('/test/{locale}', function (string $locale) {
+    if (! in_array($locale, ['en', 'kh',])) {
+        abort(400);
+    }
+
+    App::setLocale($locale);
+
+    return Inertia::render('Test');
+})->name('Tests');
 
 Route::middleware([
     'auth:sanctum',

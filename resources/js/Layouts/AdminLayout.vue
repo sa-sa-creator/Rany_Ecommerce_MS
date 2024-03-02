@@ -1,12 +1,15 @@
 <script setup>
 import { Head } from "@inertiajs/vue3";
 import Banner from "@/Components/Banner.vue";
-import { onMounted } from "vue";
-import { initFlowbite } from "flowbite";
 import Navbar from "./Navbar.vue";
 import Sidebar from "./Sidebar.vue";
+import { onMounted } from "vue";
+import { initFlowbite, initDropdowns } from "flowbite";
+
 onMounted(() => {
     initFlowbite();
+    initDropdowns();
+    document.cookie = "locale=KH";
 });
 </script>
 
@@ -16,14 +19,15 @@ onMounted(() => {
 
         <Banner />
 
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             <Navbar />
             <Sidebar />
 
             <main class="p-4 sm:ml-64">
                 <div
-                    class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14"
+                    class="p-4 border-2 border-gray-200 border-dashed rounded-lg mt-14 dark:border-gray-700 dark:bg-gray-900"
                 >
+                    <div class="text-ellipsis">Dashboard</div>
                     <slot />
                 </div>
             </main>

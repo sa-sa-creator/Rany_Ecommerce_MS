@@ -6,7 +6,7 @@ import Welcome from "@/Components/Welcome.vue";
     <AdminLayout title="Dashboard">
         <template #header>
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
-                Dashboard
+                {{ $t("system_name") }}
             </h2>
         </template>
 

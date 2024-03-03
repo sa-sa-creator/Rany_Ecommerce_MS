@@ -1,4 +1,16 @@
 @import "/node_modules/flowbite-vue/dist/index.css";
+@font-face {
+    font-family: khmerMoul;
+    src: url("/resources/css/fonts/KHMEROSMUOL.TTF");
+}
+@font-face {
+    font-family: tapich;
+    src: url("/resources/css/fonts/TAPICH.TTF");
+}
+@font-face {
+    font-family: angkor;
+    src: url("/resources/css/fonts/ANGKOR.TTF");
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

@@ -18,8 +18,13 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ["Figtree", ...defaultTheme.fontFamily.sans],
+                // sans: ["Figtree", ...defaultTheme.fontFamily.sans],
+                khmerMoul: ["khmerMoul"],
+                tapich: ["tapich"],
+                angkor: ["angkor"],
+                lilitaOne: ["Lilita One"],
             },
+
             colors: {
                 "primary-50": "rgb(var(--primary-50))",
                 "primary-100": "rgb(var(--primary-100))",

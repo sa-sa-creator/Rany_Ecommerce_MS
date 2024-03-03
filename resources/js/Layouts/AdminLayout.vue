@@ -26,11 +26,12 @@ defineProps({
             <Navbar />
             <Sidebar />
 
-            <main class="p-4 sm:ml-64">
+            <main
+                class="flex pt-14 overflow-hidden bg-gray-50 dark:bg-gray-900"
+            >
                 <div
-                    class="p-4 border-2 border-gray-200 border-dashed rounded-lg mt-14 dark:border-gray-700 dark:bg-gray-900"
+                    class="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900"
                 >
-                    <div class="text-ellipsis">Dashboard</div>
                     <slot />
                 </div>
             </main>

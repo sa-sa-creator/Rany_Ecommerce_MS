@@ -5,11 +5,9 @@ import Navbar from "./Navbar.vue";
 import Sidebar from "./Sidebar.vue";
 import { onMounted } from "vue";
 import { initFlowbite, initDropdowns } from "flowbite";
-
 onMounted(() => {
     initFlowbite();
     initDropdowns();
-    document.cookie = "locale=KH";
 });
 </script>
 

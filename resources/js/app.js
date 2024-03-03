@@ -12,22 +12,11 @@ import PrimeVue from "primevue/config";
 import Lara from "../css/presets/lara";
 // pinia configure
 import { createPinia } from "pinia";
-//Vue i18n configure
-import i18n from "./i18n";
-import EN from "@/locale/en.json";
-import KH from "@/locale/kh.json";
 
 const appName = import.meta.env.VITE_APP_NAME || "Laravel";
 const pinia = createPinia();
-
-// const i18n = createI18n({
-//     // something vue-i18n options here ...
-//     locale: "EN",
-//     messages: {
-//         EN: EN,
-//         KH: KH,
-//     },
-// });
+//Vue i18n configure
+import i18n from "./i18n";
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,

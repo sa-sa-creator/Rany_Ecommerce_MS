@@ -1,4 +1,5 @@
 import { createI18n } from "vue-i18n";
+import { langStore } from "@/store/lang";
 import en from "@/locale/en.json";
 import kh from "@/locale/kh.json";
 
@@ -12,8 +13,10 @@ function loadLocaleMassages() {
     return messages;
 }
 
+const store = langStore();
+
 export default createI18n({
-    locale: "kh",
+    locale: store.locale,
     fallbackLocale: "en",
     messages: loadLocaleMassages(),
 });

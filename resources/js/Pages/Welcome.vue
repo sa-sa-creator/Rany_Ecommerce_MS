@@ -41,7 +41,6 @@ defineProps({
                 >
             </template>
         </div>
-
         <div class="p-6 mx-auto max-w-7xl lg:p-8">
             <div class="flex justify-center">
                 <svg

@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
@@ -34,15 +38,9 @@ Route::get('/test', function () {
     return Inertia::render('Test');
 })->name('test');
 
-Route::get('/test/{locale}', function (string $locale) {
-    if (! in_array($locale, ['en', 'kh',])) {
-        abort(400);
-    }
-
-    App::setLocale($locale);
-
-    return Inertia::render('Test');
-})->name('Tests');
+Route::resource('user', UserController::class)->only('index');
+Route::resource('role', RoleController::class)->only('index');
+Route::resource('permission', PermissionController::class)->only('index');
 
 Route::middleware([
     'auth:sanctum',

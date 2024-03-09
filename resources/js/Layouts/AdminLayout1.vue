@@ -1,22 +1,54 @@
 <script setup>
+import { onMounted } from "vue";
+import { initFlowbite } from "flowbite";
 import { useDark, useToggle } from "@vueuse/core";
+import { reactive, ref } from "vue";
+import { router } from "@inertiajs/vue3";
+
+import { loadLanguageAsync } from "laravel-vue-i18n";
+import SidebarLink from "@/Components/SidebarLink.vue";
+
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
+
+onMounted(() => {
+    initFlowbite();
+});
+
+const langTitle = ref(localStorage.getItem("langTitle") || "English");
+
+const items = reactive({
+    item: [
+        {
+            title: "English",
+            value: "en",
+        },
+        { title: "Khmer", value: "kh" },
+    ],
+});
+
+const changeLocale = (item) => {
+    localStorage.getItem("langTitle", item.title);
+    router.get(route("language", item.value));
+    localStorage.getItem("lang", item.value);
+    loadLanguageAsync(item.value);
+};
 </script>
 
 <template>
+    <!-- NavBar -->
     <nav
         class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700"
     >
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
             <div class="flex items-center justify-between">
-                <div class="flex items-center justify-start rtl:justify-end">
+                <div class="flex items-center justify-start">
                     <button
                         data-drawer-target="logo-sidebar"
                         data-drawer-toggle="logo-sidebar"
                         aria-controls="logo-sidebar"
                         type="button"
-                        class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                        class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                     >
                         <span class="sr-only">Open sidebar</span>
                         <svg
@@ -35,82 +67,34 @@ const toggleDark = useToggle(isDark);
                     </button>
                     <a href="#" class="flex ms-2 md:me-24">
                         <span
-                            class="self-center text-xl text sm:text-2xl whitespace-nowrap dark:text-white font-lilitaOne"
+                            class="self-center text-xl sm:text-2xl whitespace-nowrap dark:text-white font-lilitaOne"
                             >RANY SHOP M.S</span
                         >
                     </a>
                 </div>
+
                 <div class="flex items-center">
-                    <div class="hidden mr-3 -mb-1 sm:block">
+                    <div class="hidden -mb-1 sm:block">
                         <div
                             class="flex items-center space-x-1 md:order-2 md:space-x-0 rtl:space-x-reverse"
                         >
                             <button
                                 type="button"
                                 data-dropdown-toggle="language-dropdown-menu"
-                                class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-gray-900 rounded-lg cursor-pointer dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                                class="p-2 inline-flex items-center justify-center text-sm font-medium text-gray-900 rounded-lg cursor-pointer dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
                             >
                                 <svg
-                                    class="w-5 h-5 rounded-full me-3"
-                                    aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                                    viewBox="0 0 3900 3900"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor"
+                                    class="w-6 h-6"
                                 >
                                     <path
-                                        fill="#b22234"
-                                        d="M0 0h7410v3900H0z"
+                                        fill-rule="evenodd"
+                                        d="M9 2.25a.75.75 0 0 1 .75.75v1.506a49.384 49.384 0 0 1 5.343.371.75.75 0 1 1-.186 1.489c-.66-.083-1.323-.151-1.99-.206a18.67 18.67 0 0 1-2.97 6.323c.318.384.65.753 1 1.107a.75.75 0 0 1-1.07 1.052A18.902 18.902 0 0 1 9 13.687a18.823 18.823 0 0 1-5.656 4.482.75.75 0 0 1-.688-1.333 17.323 17.323 0 0 0 5.396-4.353A18.72 18.72 0 0 1 5.89 8.598a.75.75 0 0 1 1.388-.568A17.21 17.21 0 0 0 9 11.224a17.168 17.168 0 0 0 2.391-5.165 48.04 48.04 0 0 0-8.298.307.75.75 0 0 1-.186-1.489 49.159 49.159 0 0 1 5.343-.371V3A.75.75 0 0 1 9 2.25ZM15.75 9a.75.75 0 0 1 .68.433l5.25 11.25a.75.75 0 1 1-1.36.634l-1.198-2.567h-6.744l-1.198 2.567a.75.75 0 0 1-1.36-.634l5.25-11.25A.75.75 0 0 1 15.75 9Zm-2.672 8.25h5.344l-2.672-5.726-2.672 5.726Z"
+                                        clip-rule="evenodd"
                                     />
-                                    <path
-                                        d="M0 450h7410m0 600H0m0 600h7410m0 600H0m0 600h7410m0 600H0"
-                                        stroke="#fff"
-                                        stroke-width="300"
-                                    />
-                                    <path
-                                        fill="#3c3b6e"
-                                        d="M0 0h2964v2100H0z"
-                                    />
-                                    <g fill="#fff">
-                                        <g id="d">
-                                            <g id="c">
-                                                <g id="e">
-                                                    <g id="b">
-                                                        <path
-                                                            id="a"
-                                                            d="M247 90l70.534 217.082-184.66-134.164h228.253L176.466 307.082z"
-                                                        />
-                                                        <use
-                                                            xlink:href="#a"
-                                                            y="420"
-                                                        />
-                                                        <use
-                                                            xlink:href="#a"
-                                                            y="840"
-                                                        />
-                                                        <use
-                                                            xlink:href="#a"
-                                                            y="1260"
-                                                        />
-                                                    </g>
-                                                    <use
-                                                        xlink:href="#a"
-                                                        y="1680"
-                                                    />
-                                                </g>
-                                                <use
-                                                    xlink:href="#b"
-                                                    x="247"
-                                                    y="210"
-                                                />
-                                            </g>
-                                            <use xlink:href="#c" x="494" />
-                                        </g>
-                                        <use xlink:href="#d" x="988" />
-                                        <use xlink:href="#c" x="1976" />
-                                        <use xlink:href="#e" x="2470" />
-                                    </g>
                                 </svg>
-                                English
                             </button>
                             <!-- Dropdown -->
                             <div
@@ -123,16 +107,22 @@ const toggleDark = useToggle(isDark);
                                             href="#"
                                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
                                             role="menuitem"
+                                            v-for="(item, index) in items.item"
+                                            :key="index"
+                                            @click="changeLocale(item)"
                                         >
                                             <div
                                                 class="inline-flex items-center"
                                             >
                                                 <svg
                                                     aria-hidden="true"
-                                                    class="h-3.5 w-3.5 rounded-full me-2"
+                                                    class="w-4 h-4 rounded-full me-2"
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     id="flag-icon-css-us"
                                                     viewBox="0 0 512 512"
+                                                    v-if="
+                                                        item.title == `English`
+                                                    "
                                                 >
                                                     <g fill-rule="evenodd">
                                                         <g stroke-width="1pt">
@@ -159,22 +149,7 @@ const toggleDark = useToggle(isDark);
                                                         />
                                                     </g>
                                                 </svg>
-                                                English
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            href="#"
-                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
-                                            role="menuitem"
-                                        >
-                                            <div
-                                                class="inline-flex items-center"
-                                            >
                                                 <svg
-                                                    class="h-3.5 w-3.5 me-2"
-                                                    aria-hidden="true"
                                                     version="1.1"
                                                     id="Layer_1"
                                                     xmlns="http://www.w3.org/2000/svg"
@@ -182,6 +157,8 @@ const toggleDark = useToggle(isDark);
                                                     viewBox="0 0 799.999 799.999"
                                                     xml:space="preserve"
                                                     fill="#000000"
+                                                    class="w-4 h-4 me-2"
+                                                    v-if="item.title == `Khmer`"
                                                 >
                                                     <g
                                                         id="SVGRepo_bgCarrier"
@@ -251,7 +228,7 @@ const toggleDark = useToggle(isDark);
                                                         </g>
                                                     </g>
                                                 </svg>
-                                                ខ្មែរ
+                                                {{ item.title }}
                                             </div>
                                         </a>
                                     </li>
@@ -259,27 +236,7 @@ const toggleDark = useToggle(isDark);
                             </div>
                         </div>
                     </div>
-                    <!-- Search mobile -->
-                    <button
-                        id="toggleSidebarMobileSearch"
-                        type="button"
-                        class="p-2 text-gray-500 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                    >
-                        <span class="sr-only">Search</span>
-                        <!-- Search icon -->
-                        <svg
-                            class="w-6 h-6"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                fill-rule="evenodd"
-                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                clip-rule="evenodd"
-                            ></path>
-                        </svg>
-                    </button>
+
                     <!-- Notifications -->
                     <button
                         type="button"
@@ -571,12 +528,36 @@ const toggleDark = useToggle(isDark);
                             </div>
                         </a>
                     </div>
+                    <!-- Dark Mode -->
                     <button
                         @click="toggleDark()"
                         type="button"
-                        class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5"
+                        class="p-2 text-sm text-gray-500 rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700"
                     >
-                        {{ isDark ? "Dark" : "Light" }}
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            class="w-6 h-6"
+                            v-if="isDark == false"
+                        >
+                            <path
+                                d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z"
+                            />
+                        </svg>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            class="w-6 h-6"
+                            v-if="isDark == true"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z"
+                                clip-rule="evenodd"
+                            />
+                        </svg>
                     </button>
                     <!-- Profile -->
                     <div class="flex items-center ml-3">
@@ -590,7 +571,7 @@ const toggleDark = useToggle(isDark);
                             >
                                 <span class="sr-only">Open user menu</span>
                                 <img
-                                    class="w-8 h-8 rounded-full"
+                                    class="w-8 h-8 rounded-full border-gray-500 border-2"
                                     src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
                                     alt="user photo"
                                 />
@@ -655,4 +636,92 @@ const toggleDark = useToggle(isDark);
             </div>
         </div>
     </nav>
+    <!-- SideBare -->
+    <aside
+        id="logo-sidebar"
+        class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 -translate-x-full bg-white border-r border-gray-200 sm:transition-transform lg:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+        aria-label="Sidebar"
+    >
+        <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+            <ul class="space-y-2 font-medium">
+                <li>
+                    <SidebarLink
+                        :href="route('user.index')"
+                        :active="route().current('user.index')"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                    >
+                        <svg
+                            class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor"
+                            viewBox="0 0 22 21"
+                        >
+                            <path
+                                d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z"
+                            />
+                            <path
+                                d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z"
+                            />
+                        </svg>
+                        <span class="ms-3">{{ $t("Dashboard") }}</span>
+                    </SidebarLink>
+                </li>
+                <li>
+                    <SidebarLink
+                        :href="route('role.index')"
+                        :active="route().current('role.index')"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                    >
+                        <svg
+                            class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor"
+                            viewBox="0 0 22 21"
+                        >
+                            <path
+                                d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z"
+                            />
+                            <path
+                                d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z"
+                            />
+                        </svg>
+                        <span class="ms-3">Role</span>
+                    </SidebarLink>
+                </li>
+                <li>
+                    <SidebarLink
+                        :href="route('permission.index')"
+                        :active="route().current('permission.index')"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                    >
+                        <svg
+                            class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor"
+                            viewBox="0 0 22 21"
+                        >
+                            <path
+                                d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z"
+                            />
+                            <path
+                                d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z"
+                            />
+                        </svg>
+                        <span class="ms-3">Permission</span>
+                    </SidebarLink>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <!-- Main -->
+    <main class="w-full pt-14">
+        <div
+            class="h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900"
+        >
+            <slot />
+        </div>
+    </main>
 </template>

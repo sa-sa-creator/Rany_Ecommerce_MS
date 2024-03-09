@@ -22,6 +22,7 @@ export default {
                 tapich: ["tapich"],
                 angkor: ["angkor"],
                 lilitaOne: ["Lilita One"],
+                sansKhmer: ["Noto Sans Khmer"],
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
             },
 

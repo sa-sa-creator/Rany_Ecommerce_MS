@@ -1,9 +1,9 @@
 <script setup>
-import AdminLayout from "@/Layouts/AdminLayout.vue";
+import AdminLayout1 from "@/Layouts/AdminLayout1.vue";
 </script>
 
 <template>
-    <AdminLayout>
+    <AdminLayout1>
         <div
             class="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5 dark:bg-gray-800 dark:border-gray-700"
         >
@@ -48,7 +48,7 @@ import AdminLayout from "@/Layouts/AdminLayout.vue";
                                     <a
                                         href="#"
                                         class="ml-1 text-gray-700 hover:text-primary-600 md:ml-2 dark:text-gray-300 dark:hover:text-white"
-                                        >Users</a
+                                        >Roles</a
                                     >
                                 </div>
                             </li>
@@ -82,24 +82,6 @@ import AdminLayout from "@/Layouts/AdminLayout.vue";
                     </h1>
                 </div>
                 <div class="sm:flex">
-                    <div
-                        class="items-center hidden mb-3 sm:flex sm:divide-x sm:divide-gray-100 sm:mb-0 dark:divide-gray-700"
-                    >
-                        <form class="lg:pr-3" action="#" method="GET">
-                            <label for="users-search" class="sr-only"
-                                >Search</label
-                            >
-                            <div class="relative mt-1 lg:w-64 xl:w-96">
-                                <input
-                                    type="text"
-                                    name="email"
-                                    id="users-search"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Search for users"
-                                />
-                            </div>
-                        </form>
-                    </div>
                     <div
                         class="flex items-center ml-auto space-x-2 sm:space-x-3"
                     >
@@ -138,7 +120,7 @@ import AdminLayout from "@/Layouts/AdminLayout.vue";
                                 <tr>
                                     <th
                                         scope="col"
-                                        class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400 pl-40"
+                                        class="p-4 pl-40 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400"
                                     >
                                         Id
                                     </th>
@@ -164,7 +146,7 @@ import AdminLayout from "@/Layouts/AdminLayout.vue";
                                     class="hover:bg-gray-100 dark:hover:bg-gray-700"
                                 >
                                     <td
-                                        class="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400 pl-40"
+                                        class="max-w-sm p-4 pl-40 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400"
                                     >
                                         1
                                     </td>
@@ -196,7 +178,7 @@ import AdminLayout from "@/Layouts/AdminLayout.vue";
                                                     clip-rule="evenodd"
                                                 ></path>
                                             </svg>
-                                            Edit role
+                                            Edit
                                         </button>
                                         <button
                                             type="button"
@@ -216,7 +198,7 @@ import AdminLayout from "@/Layouts/AdminLayout.vue";
                                                     clip-rule="evenodd"
                                                 ></path>
                                             </svg>
-                                            Delete role
+                                            Delete
                                         </button>
                                     </td>
                                 </tr>
@@ -226,5 +208,5 @@ import AdminLayout from "@/Layouts/AdminLayout.vue";
                 </div>
             </div>
         </div>
-    </AdminLayout>
+    </AdminLayout1>
 </template>

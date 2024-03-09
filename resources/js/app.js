@@ -12,6 +12,8 @@ import "flowbite-vue";
 import PrimeVue from "primevue/config";
 import Lara from "../css/presets/lara";
 
+import { i18nVue } from "laravel-vue-i18n";
+
 const appName = import.meta.env.VITE_APP_NAME || "Laravel";
 
 createInertiaApp({
@@ -28,6 +30,12 @@ createInertiaApp({
             .use(PrimeVue, {
                 unstyled: true,
                 pt: Lara,
+            })
+            .use(i18nVue, {
+                resolve: async (lang) => {
+                    const langs = import.meta.glob("../../lang/*.json");
+                    return await langs[`../../lang/${lang}.json`]();
+                },
             })
             .mount(el);
     },

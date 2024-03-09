@@ -8,6 +8,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,11 @@ use Illuminate\Foundation\Application;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/language/{language}',function($language){
+    Session::put('locale',$language);
+    return  redirect()->back();
+})->name('language');
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [

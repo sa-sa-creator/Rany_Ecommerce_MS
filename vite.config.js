@@ -5,6 +5,9 @@ import vue from "@vitejs/plugin-vue";
 import i18n from "laravel-vue-i18n/vite";
 
 export default defineConfig({
+    build: {
+        chunkSizeWarningLimit: 100000000,
+    },
     plugins: [
         laravel({
             input: "resources/js/app.js",
@@ -18,6 +21,7 @@ export default defineConfig({
                 },
             },
         }),
+
         i18n(),
     ],
 });

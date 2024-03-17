@@ -45,7 +45,7 @@ Route::get('/test', function () {
 })->name('test');
 
 Route::resource('user', UserController::class)->only('index');
-Route::resource('role', RoleController::class)->only('index');
+Route::resource('role', RoleController::class)->only('index','store','edit','create');
 Route::resource('permission', PermissionController::class)->only('index');
 
 Route::middleware([

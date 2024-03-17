@@ -1,9 +1,22 @@
 <script setup>
 import AdminLayout1 from "@/Layouts/AdminLayout1.vue";
+import { Link } from "@inertiajs/vue3";
+import SuccessMessage from "@/Components/SuccessMessage.vue";
+
+defineProps({
+    roles: Array,
+});
 </script>
 
 <template>
     <AdminLayout1>
+        <div
+            v-if="$page.props.flash.success"
+            class="absolute z-10 alert top-20 right-5"
+        >
+            <SuccessMessage :message="$page.props.flash.success" />
+        </div>
+
         <div
             class="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5 dark:bg-gray-800 dark:border-gray-700"
         >
@@ -85,10 +98,8 @@ import AdminLayout1 from "@/Layouts/AdminLayout1.vue";
                     <div
                         class="flex items-center ml-auto space-x-2 sm:space-x-3"
                     >
-                        <button
-                            type="button"
-                            data-modal-target="add-user-modal"
-                            data-modal-toggle="add-user-modal"
+                        <Link
+                            :href="route('role.create')"
                             class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                         >
                             <svg
@@ -104,7 +115,7 @@ import AdminLayout1 from "@/Layouts/AdminLayout1.vue";
                                 ></path>
                             </svg>
                             Add role
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -120,20 +131,20 @@ import AdminLayout1 from "@/Layouts/AdminLayout1.vue";
                                 <tr>
                                     <th
                                         scope="col"
-                                        class="p-4 pl-40 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400"
+                                        class="p-4 pl-40 text-base font-medium text-left text-gray-500 uppercase dark:text-gray-400"
                                     >
                                         Id
                                     </th>
                                     <th
                                         scope="col"
-                                        class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400"
+                                        class="p-4 text-base font-medium text-left text-gray-500 uppercase dark:text-gray-400"
                                     >
                                         Role
                                     </th>
 
                                     <th
                                         scope="col"
-                                        class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400"
+                                        class="p-4 text-base font-medium text-left text-gray-500 uppercase dark:text-gray-400"
                                     >
                                         Actions
                                     </th>
@@ -144,24 +155,24 @@ import AdminLayout1 from "@/Layouts/AdminLayout1.vue";
                             >
                                 <tr
                                     class="hover:bg-gray-100 dark:hover:bg-gray-700"
+                                    v-for="role in roles"
+                                    :key="role.id"
                                 >
                                     <td
                                         class="max-w-sm p-4 pl-40 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400"
                                     >
-                                        1
+                                        {{ role.id }}
                                     </td>
                                     <td
                                         class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                     >
-                                        Admin
+                                        {{ role.name }}
                                     </td>
 
                                     <td class="p-4 space-x-2 whitespace-nowrap">
-                                        <button
-                                            type="button"
-                                            data-modal-target="edit-user-modal"
-                                            data-modal-toggle="edit-user-modal"
-                                            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                                        <Link
+                                            :href="route('role.edit', role.id)"
+                                            class="inline-flex items-center px-3 py-2 mb-2 text-sm font-medium text-center text-green-600 bg-transparent border-2 border-green-700 rounded-lg hover:bg-green-700 focus:ring-4 focus:ring-white-300 dark:focus:ring-white-700 hover:text-white focus:outline-none focus:ring-green-300 me-2 dark:border-green-700 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-700 dark:focus:ring-green-500"
                                         >
                                             <svg
                                                 class="w-4 h-4 mr-2"
@@ -179,12 +190,12 @@ import AdminLayout1 from "@/Layouts/AdminLayout1.vue";
                                                 ></path>
                                             </svg>
                                             Edit
-                                        </button>
+                                        </Link>
                                         <button
                                             type="button"
                                             data-modal-target="delete-user-modal"
                                             data-modal-toggle="delete-user-modal"
-                                            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900"
+                                            class="inline-flex items-center px-3 py-2 mb-2 text-sm font-medium text-center text-red-600 bg-transparent border-2 border-red-700 rounded-lg hover:bg-red-700 focus:ring-4 focus:ring-white-300 dark:focus:ring-white-700 hover:text-white focus:outline-none focus:ring-red-300 me-2 dark:border-red-700 dark:text-red-600 dark:hover:text-white dark:hover:bg-red-700 dark:focus:ring-red-600"
                                         >
                                             <svg
                                                 class="w-4 h-4 mr-2"

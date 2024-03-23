@@ -1,3 +1,23 @@
 {
-    "Dashboard": "ផ្ទាំងគ្រប់គ្រង"
+    "BranchName": "RANY SHOP M.S",
+    "Dashboard": "ផ្ទាំងគ្រប់គ្រង",
+    "Users": "អ្នកប្រើប្រាស់",
+
+    "Home": "ទំព័រដើម",
+    "List": "បញ្ចី",
+    "allRole": "បញ្ចីតួនាទី",
+    "allPermission": "បញ្ចីអនុញ្ញាត",
+
+    "Role": "តួនាទី",
+    "Permission": "អនុញ្ញាត",
+    "Add": "បង្កើតថ្មី",
+    "Update": "ធ្វើបច្ចុប្បន្នភាព",
+    "Create": "បង្កើត",
+    "Edit": "កែប្រែ",
+    "updateRole": "ធ្វើបច្ចុប្បន្នភាពតួនាទី",
+    "updatePermission": "ធ្វើបច្ចុប្បន្នភាពអនុញ្ញាត",
+    "createRole": "បង្កើតតួនាទី",
+    "createPermission": "បង្កើតអនុញ្ញាត",
+    "Name": "ឈ្មោះ",
+    "Delete": "លុប"
 }

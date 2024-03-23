@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Inertia\Inertia;
+use Inertia\Response;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\PermissionRequest;
 use Spatie\Permission\Models\Permission;
 use App\Http\Resources\PermissionResource;
-use Inertia\Response;
 
 class PermissionController extends Controller
 {
@@ -16,24 +18,25 @@ class PermissionController extends Controller
     public function index(): Response
     {
         return Inertia::render('Admin/Permission/Index',[
-            'roles' => PermissionResource::collection(Permission::all())
+            'permissions' => PermissionResource::collection(Permission::all())
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): Response
     {
-        //
+        return Inertia::render('Admin/Permission/Create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PermissionRequest $request): RedirectResponse
     {
-        //
+        Permission::create($request->validated());
+        return to_route('permission.index')->with('success','Permission was created!');
     }
 
     /**
@@ -47,24 +50,31 @@ class PermissionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id): Response
     {
-        //
+        $permission = Permission::findById($id);
+        return Inertia::render('Admin/Permission/Edit',[
+            'permission' => new PermissionResource($permission),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PermissionRequest $request, string $id):RedirectResponse
     {
-        //
+        $permission = Permission::findById($id);
+        $permission->update($request->validated());
+        return to_route('permission.index')->with('success','Updated');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id):RedirectResponse
     {
-        //
+        $permission = Permission::findById($id);
+        $permission->delete();
+        return back()->with('success','Deleted');
     }
 }

@@ -26,7 +26,7 @@ const changeLocale = (item) => {
 <template>
     <aside
         id="logo-sidebar"
-        class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 -translate-x-full bg-white border-r border-gray-200 sm:transition-transform lg:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+        class="fixed top-16 left-0 z-40 w-64 h-screen pt-2 -translate-x-full bg-white border-r border-gray-200 sm:transition-transform lg:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
         aria-label="Sidebar"
     >
         <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
@@ -51,7 +51,9 @@ const changeLocale = (item) => {
                                 d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z"
                             />
                         </svg>
-                        <span class="ms-3">{{ $t("Dashboard") }}</span>
+                        <span class="ms-3 font-sansKhmer">{{
+                            $t("Dashboard")
+                        }}</span>
                     </SidebarLink>
                 </li>
                 <li>

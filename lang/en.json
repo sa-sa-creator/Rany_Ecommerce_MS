@@ -1,3 +1,23 @@
 {
-    "Dashboard": "Dashboard"
+    "BranchName": "RANY SHOP M.S",
+    "Dashboard": "Dashboard",
+    "Users": "Users",
+
+    "Home": "Home",
+    "List": "List",
+    "allRole": "All Roles",
+    "allPermission": "All Permissions",
+
+    "Role": "Role",
+    "Permission": "Permission",
+    "Add": "Add new",
+    "Edit": "Edit",
+    "updateRole": "Update Role",
+    "updatePermission": "Update Permission",
+    "Update": "Update",
+    "Create": "Create",
+    "createRole": "Create Role",
+    "createPermission": "Create Permission",
+    "Name": "Name",
+    "Delete": "Delete"
 }

@@ -1,22 +1,44 @@
 <script setup>
-import AdminLayout1 from "@/Layouts/AdminLayout1.vue";
-import { Link } from "@inertiajs/vue3";
-import SuccessMessage from "@/Components/SuccessMessage.vue";
+import AdminLayout from "@/Layouts/AdminLayout.vue";
+import { Link, router } from "@inertiajs/vue3";
+import Text from "@/Components/Text.vue";
+
+import { ref } from "vue";
 
 defineProps({
     roles: Array,
 });
+
+const deleteRole = (role, index) => {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            try {
+                router.delete("role/" + role.id, {
+                    onSuccess: (page) => {
+                        this.delete(role, index);
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success",
+                        });
+                    },
+                });
+            } catch (error) {}
+        }
+    });
+};
 </script>
 
 <template>
-    <AdminLayout1>
-        <div
-            v-if="$page.props.flash.success"
-            class="absolute z-10 alert top-20 right-5"
-        >
-            <SuccessMessage :message="$page.props.flash.success" />
-        </div>
-
+    <AdminLayout title="Role | List">
         <div
             class="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5 dark:bg-gray-800 dark:border-gray-700"
         >
@@ -41,7 +63,10 @@ defineProps({
                                             d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
                                         ></path>
                                     </svg>
-                                    Home
+                                    <Text
+                                        :message="$t('Home')"
+                                        class="mr-1"
+                                    ></Text>
                                 </a>
                             </li>
                             <li>
@@ -61,8 +86,11 @@ defineProps({
                                     <a
                                         href="#"
                                         class="ml-1 text-gray-700 hover:text-primary-600 md:ml-2 dark:text-gray-300 dark:hover:text-white"
-                                        >Roles</a
-                                    >
+                                        ><Text
+                                            :message="$t('Role')"
+                                            class="mr-1"
+                                        ></Text
+                                    ></a>
                                 </div>
                             </li>
                             <li>
@@ -82,8 +110,11 @@ defineProps({
                                     <span
                                         class="ml-1 text-gray-400 md:ml-2 dark:text-gray-500"
                                         aria-current="page"
-                                        >List</span
-                                    >
+                                        ><Text
+                                            :message="$t('List')"
+                                            class="mr-1"
+                                        ></Text
+                                    ></span>
                                 </div>
                             </li>
                         </ol>
@@ -91,7 +122,7 @@ defineProps({
                     <h1
                         class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white"
                     >
-                        All users
+                        <Text :message="$t('allRole')" class="mr-1"></Text>
                     </h1>
                 </div>
                 <div class="sm:flex">
@@ -103,7 +134,7 @@ defineProps({
                             class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                         >
                             <svg
-                                class="w-5 h-5 mr-2 -ml-1"
+                                class="w-5 h-5 mr-1"
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -114,7 +145,7 @@ defineProps({
                                     clip-rule="evenodd"
                                 ></path>
                             </svg>
-                            Add role
+                            <Text :message="$t('Add')" class="mr-1"></Text>
                         </Link>
                     </div>
                 </div>
@@ -159,12 +190,12 @@ defineProps({
                                     :key="role.id"
                                 >
                                     <td
-                                        class="max-w-sm p-4 pl-40 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400"
+                                        class="max-w-sm p-4 pl-40 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400 font-sansKhmer"
                                     >
                                         {{ role.id }}
                                     </td>
                                     <td
-                                        class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                        class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white font-sansKhmer"
                                     >
                                         {{ role.name }}
                                     </td>
@@ -175,7 +206,7 @@ defineProps({
                                             class="inline-flex items-center px-3 py-2 mb-2 text-sm font-medium text-center text-green-600 bg-transparent border-2 border-green-700 rounded-lg hover:bg-green-700 focus:ring-4 focus:ring-white-300 dark:focus:ring-white-700 hover:text-white focus:outline-none focus:ring-green-300 me-2 dark:border-green-700 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-700 dark:focus:ring-green-500"
                                         >
                                             <svg
-                                                class="w-4 h-4 mr-2"
+                                                class="w-4 h-4 mr-1"
                                                 fill="currentColor"
                                                 viewBox="0 0 20 20"
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -189,16 +220,18 @@ defineProps({
                                                     clip-rule="evenodd"
                                                 ></path>
                                             </svg>
-                                            Edit
+                                            <Text
+                                                :message="$t('Edit')"
+                                                class="mr-1"
+                                            ></Text>
                                         </Link>
                                         <button
+                                            @click="deleteRole(role, index)"
                                             type="button"
-                                            data-modal-target="delete-user-modal"
-                                            data-modal-toggle="delete-user-modal"
                                             class="inline-flex items-center px-3 py-2 mb-2 text-sm font-medium text-center text-red-600 bg-transparent border-2 border-red-700 rounded-lg hover:bg-red-700 focus:ring-4 focus:ring-white-300 dark:focus:ring-white-700 hover:text-white focus:outline-none focus:ring-red-300 me-2 dark:border-red-700 dark:text-red-600 dark:hover:text-white dark:hover:bg-red-700 dark:focus:ring-red-600"
                                         >
                                             <svg
-                                                class="w-4 h-4 mr-2"
+                                                class="w-4 h-4 mr-1"
                                                 fill="currentColor"
                                                 viewBox="0 0 20 20"
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -209,7 +242,10 @@ defineProps({
                                                     clip-rule="evenodd"
                                                 ></path>
                                             </svg>
-                                            Delete
+                                            <Text
+                                                :message="$t('Delete')"
+                                                class="mr-1"
+                                            ></Text>
                                         </button>
                                     </td>
                                 </tr>
@@ -219,5 +255,5 @@ defineProps({
                 </div>
             </div>
         </div>
-    </AdminLayout1>
+    </AdminLayout>
 </template>

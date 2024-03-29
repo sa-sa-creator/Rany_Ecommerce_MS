@@ -2,16 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\RoleResource;
+use App\Http\Resources\UserResource;
+use App\Models\User;
+use Illuminate\Http\RedirectResponse;
+use Inertia\Inertia;
 use Illuminate\Http\Request;
+use Inertia\Response;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index():Response
     {
-        //
+        return Inertia::render('Admin/User/Index',[
+            'users' => UserResource::collection(User::all())
+        ]);
     }
 
     /**
@@ -19,7 +28,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Admin/User/Create',[
+            'roles' => RoleResource::collection(Role::all())
+        ]);
     }
 
     /**
@@ -41,9 +52,12 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        return Inertia::render('Admin/User/Edit',[
+            'user' => $user,
+            'roles' => RoleResource::collection(Role::all())
+        ]);
     }
 
     /**
@@ -57,8 +71,9 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return back()->with('success','Deleted');
     }
 }

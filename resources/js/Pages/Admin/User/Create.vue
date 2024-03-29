@@ -1,5 +1,5 @@
 <template>
-    <AdminLayout title="Permission | Edit">
+    <AdminLayout title="Role | Create">
         <div
             class="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5 dark:bg-gray-800 dark:border-gray-700"
         >
@@ -45,10 +45,10 @@
                                         ></path>
                                     </svg>
                                     <Link
-                                        :href="route('permission.index')"
+                                        :href="route('role.index')"
                                         class="ml-1 text-gray-700 hover:text-primary-600 md:ml-2 dark:text-gray-300 dark:hover:text-white"
                                         ><Text
-                                            :message="$t('Permission')"
+                                            :message="$t('Role')"
                                             class="mr-1"
                                         ></Text
                                     ></Link>
@@ -90,23 +90,15 @@
                 <h2
                     class="mb-4 text-xl font-bold text-gray-900 dark:text-white"
                 >
-                    <Text :message="$t('updatePermission')" class="mr-1"></Text>
+                    <Text :message="$t('createRole')" class="mr-1"></Text>
                 </h2>
-                <form
-                    @submit.prevent="
-                        ($event) =>
-                            form.put(route('permission.update', permission.id))
-                    "
-                >
+                <form @submit.prevent="create()">
                     <div class="grid gap-4 mb-4">
                         <div>
                             <label
                                 for="name"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                ><Text
-                                    :message="$t('Permission')"
-                                    class="mr-1"
-                                ></Text
+                                ><Text :message="$t('Role')" class="mr-1"></Text
                             ></label>
                             <input
                                 v-model="form.name"
@@ -119,6 +111,25 @@
                             <div v-if="form.errors.name" class="text-red-700">
                                 {{ form.errors.name }}
                             </div>
+                        </div>
+                        <div>
+                            <label
+                                for="permission"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                ><Text
+                                    :message="$t('Permission')"
+                                    class="mr-1"
+                                ></Text
+                            ></label>
+                            <VueMultiselect
+                                v-model="form.roles"
+                                :options="roles"
+                                :multiple="true"
+                                :close-on-select="true"
+                                placeholder="Pick some permission"
+                                label="name"
+                                track-by="id"
+                            />
                         </div>
                     </div>
                     <div class="flex items-center space-x-4">
@@ -138,12 +149,19 @@
 <script setup>
 import AdminLayout from "@/Layouts/AdminLayout.vue";
 import { useForm, Link } from "@inertiajs/vue3";
+import VueMultiselect from "vue-multiselect";
 import Text from "@/Components/Text.vue";
 
-const props = defineProps({
-    permission: Object,
+
+defineProps({
+    roles: Array,
 });
+
 const form = useForm({
-    name: props.permission?.name,
+    name: null,
+    roles: [],
 });
+
+const create = () => form.post(route("user.store", {}));
 </script>
+<style src="vue-multiselect/dist/vue-multiselect.css"></style>

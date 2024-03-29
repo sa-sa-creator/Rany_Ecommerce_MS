@@ -7,6 +7,9 @@
     "List": "List",
     "allRole": "All Roles",
     "allPermission": "All Permissions",
+    "allUser": "All Users",
+    "createUser": "Create User",
+    "updateUser": "Update user",
 
     "Role": "Role",
     "Permission": "Permission",

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -44,7 +45,7 @@ Route::get('/test', function () {
     return Inertia::render('Test');
 })->name('test');
 
-Route::resource('user', UserController::class)->only('index');
+Route::resource('user', UserController::class)->except('show');
 Route::resource('role', RoleController::class)->except('show');
 
 Route::resource('permission', PermissionController::class)->except('show');

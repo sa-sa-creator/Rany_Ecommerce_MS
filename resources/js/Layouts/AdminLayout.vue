@@ -1,9 +1,8 @@
 <script setup>
-import { onMounted } from "vue";
 import { initFlowbite } from "flowbite";
 import { useDark, useToggle } from "@vueuse/core";
-import { reactive, ref } from "vue";
-import { Head, Link, router } from "@inertiajs/vue3";
+import { reactive, onMounted, defineProps } from "vue";
+import { Head, router } from "@inertiajs/vue3";
 import SidebarText from "@/Components/SidebarText.vue";
 
 import SuccessMessage from "@/Components/SuccessMessage.vue";
@@ -11,8 +10,11 @@ import SuccessMessage from "@/Components/SuccessMessage.vue";
 import { loadLanguageAsync } from "laravel-vue-i18n";
 import SidebarLink from "@/Components/SidebarLink.vue";
 
-defineProps({
-    title: String,
+const props = defineProps({
+    title: {
+        type: String,
+        required: true,
+    },
 });
 
 const isDark = useDark();
@@ -21,8 +23,6 @@ const toggleDark = useToggle(isDark);
 onMounted(() => {
     initFlowbite();
 });
-
-const langTitle = ref(localStorage.getItem("langTitle") || "English");
 
 const items = reactive({
     item: [
@@ -44,7 +44,7 @@ const changeLocale = (item) => {
 
 <template>
     <div>
-        <Head :title="title" />
+        <Head :title="props.title" />
     </div>
     <div
         v-if="$page.props.flash.success"
@@ -82,11 +82,6 @@ const changeLocale = (item) => {
                         </svg>
                     </button>
                     <a href="#" class="flex ms-2 md:me-24">
-                        <img
-                            src="{{url('/images/logo.png')}}"
-                            class="h-8 mr-3"
-                            alt="FlowBite Logo"
-                        />
                         <span
                             class="self-center text-xl sm:text-2xl whitespace-nowrap dark:text-white font-lilitaOne"
                         >
@@ -733,6 +728,15 @@ const changeLocale = (item) => {
                         </svg>
                     </button>
                     <ul id="dropdown-user" class="hidden py-2 space-y-2">
+                        <li>
+                            <SidebarLink
+                                :href="route('user.index')"
+                                :active="route().current('user.index')"
+                                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                            >
+                                <SidebarText :message="$t('Users')" />
+                            </SidebarLink>
+                        </li>
                         <li>
                             <SidebarLink
                                 :href="route('role.index')"

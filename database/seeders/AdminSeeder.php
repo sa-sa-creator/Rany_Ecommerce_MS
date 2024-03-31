@@ -28,5 +28,18 @@ class AdminSeeder extends Seeder
             'remember_token' => Str::random(10),
 
         ])->assignRole('admin');
+        User::create([
+
+            'name' => 'seller',
+
+            'email' =>'seller@gmail.com',
+
+            'email_verified_at' => now(),
+
+            'password' =>  '$2y$12$5PLZQpXlnS.jxLymf9prN.k.HV/X7TLqPqC/mI0G0ek4p0MAA6KO6',
+
+            'remember_token' => Str::random(10),
+
+        ])->assignRole('seller');
     }
 }

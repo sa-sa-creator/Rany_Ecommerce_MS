@@ -152,6 +152,7 @@ import { useForm, Link } from "@inertiajs/vue3";
 import VueMultiselect from "vue-multiselect";
 import Text from "@/Components/Text.vue";
 
+
 defineProps({
     permissions: Array,
 });

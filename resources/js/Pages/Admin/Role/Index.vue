@@ -3,8 +3,6 @@ import AdminLayout from "@/Layouts/AdminLayout.vue";
 import { Link, router } from "@inertiajs/vue3";
 import Text from "@/Components/Text.vue";
 
-import { ref } from "vue";
-
 defineProps({
     roles: Array,
 });

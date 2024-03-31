@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "fbb1c7454ed7de5bdbd6cb9adfa1cc45",
+=======
+    "content-hash": "7ea06903271700568449e94345e60b1e",
+>>>>>>> costom
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -606,6 +610,94 @@
             "time": "2023-10-06T06:47:41+00:00"
         },
         {
+<<<<<<< HEAD
+=======
+            "name": "erlandmuchasaj/laravel-file-uploader",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/erlandmuchasaj/laravel-file-uploader.git",
+                "reference": "6c51e219cfbb6011901d65385e9d287b0297cbf1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/erlandmuchasaj/laravel-file-uploader/zipball/6c51e219cfbb6011901d65385e9d287b0297cbf1",
+                "reference": "6c51e219cfbb6011901d65385e9d287b0297cbf1",
+                "shasum": ""
+            },
+            "require": {
+                "ext-exif": "*",
+                "ext-fileinfo": "*",
+                "ext-json": "*",
+                "illuminate/contracts": "^8|^9|^10|^11",
+                "illuminate/filesystem": "^8|^9|^10|^11",
+                "illuminate/http": "^8|^9|^10|^11",
+                "illuminate/support": "^8|^9|^10|^11",
+                "nesbot/carbon": "^2",
+                "php": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "GzipServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ErlandMuchasaj\\LaravelFileUploader\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Erland Muchasaj",
+                    "email": "erland.muchasaj@gmail.com",
+                    "homepage": "https://erlandmuchasaj.tech/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A simple package to help you easily upload files to your laravel project.",
+            "homepage": "https://github.com/erlandmuchasaj/laravel-file-uploader",
+            "keywords": [
+                "cms",
+                "emcms",
+                "file",
+                "images",
+                "laravel",
+                "library",
+                "media",
+                "package",
+                "upload"
+            ],
+            "support": {
+                "email": "erland.muchasaj@gmail.com",
+                "irc": "irc://irc.freenode.org/composer",
+                "issues": "https://github.com/erlandmuchasaj/laravel-file-uploader/issues",
+                "source": "https://github.com/erlandmuchasaj/laravel-file-uploader"
+            },
+            "funding": [
+                {
+                    "url": "https://ko-fi.com/erlandmuchasaj",
+                    "type": "Ko-fi"
+                },
+                {
+                    "url": "https://paypal.me/emcms?country.x=AL&locale.x=en_US",
+                    "type": "PayPal"
+                },
+                {
+                    "url": "https://www.patreon.com/erlandmuchasaj",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2024-03-26T12:10:24+00:00"
+        },
+        {
+>>>>>>> costom
             "name": "erlandmuchasaj/laravel-gzip",
             "version": "1.1.2",
             "source": {

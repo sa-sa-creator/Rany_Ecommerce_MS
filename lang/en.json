@@ -7,6 +7,14 @@
     "List": "List",
     "allRole": "All Roles",
     "allPermission": "All Permissions",
+    "allUser": "All Users",
+    "createUser": "Create User",
+    "updateUser": "Update user",
+
+    "Username": "Username",
+    "Email": "Email",
+    "Password": "Password",
+    "confirmPassword": "Confirm Password",
 
     "Role": "Role",
     "Permission": "Permission",

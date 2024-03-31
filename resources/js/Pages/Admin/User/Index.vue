@@ -3,12 +3,11 @@ import AdminLayout from "@/Layouts/AdminLayout.vue";
 import { Link, router } from "@inertiajs/vue3";
 import Text from "@/Components/Text.vue";
 
-
 defineProps({
-    permissions: Array,
+    users: Array,
 });
 
-const deletePermission = (permission, index) => {
+const deleteRole = (user, index) => {
     Swal.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
@@ -20,9 +19,9 @@ const deletePermission = (permission, index) => {
     }).then((result) => {
         if (result.isConfirmed) {
             try {
-                router.delete("permission/" + permission.id, {
+                router.delete("user/" + user.id, {
                     onSuccess: (page) => {
-                        this.delete(permission, index);
+                        this.delete(user, index);
                         Swal.fire({
                             title: "Deleted!",
                             text: "Your file has been deleted.",
@@ -37,7 +36,7 @@ const deletePermission = (permission, index) => {
 </script>
 
 <template>
-    <AdminLayout title="Permission | List">
+    <AdminLayout title="Role | List">
         <div
             class="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5 dark:bg-gray-800 dark:border-gray-700"
         >
@@ -86,7 +85,7 @@ const deletePermission = (permission, index) => {
                                         href="#"
                                         class="ml-1 text-gray-700 hover:text-primary-600 md:ml-2 dark:text-gray-300 dark:hover:text-white"
                                         ><Text
-                                            :message="$t('Permission')"
+                                            :message="$t('Users')"
                                             class="mr-1"
                                         ></Text
                                     ></a>
@@ -121,10 +120,7 @@ const deletePermission = (permission, index) => {
                     <h1
                         class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white"
                     >
-                        <Text
-                            :message="$t('allPermission')"
-                            class="mr-1"
-                        ></Text>
+                        <Text :message="$t('allRole')" class="mr-1"></Text>
                     </h1>
                 </div>
                 <div class="sm:flex">
@@ -132,7 +128,7 @@ const deletePermission = (permission, index) => {
                         class="flex items-center ml-auto space-x-2 sm:space-x-3"
                     >
                         <Link
-                            :href="route('permission.create')"
+                            :href="route('user.create')"
                             class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                         >
                             <svg
@@ -172,7 +168,13 @@ const deletePermission = (permission, index) => {
                                         scope="col"
                                         class="p-4 text-base font-medium text-left text-gray-500 uppercase dark:text-gray-400"
                                     >
-                                        Permission
+                                        Username
+                                    </th>
+                                    <th
+                                        scope="col"
+                                        class="p-4 text-base font-medium text-left text-gray-500 uppercase dark:text-gray-400"
+                                    >
+                                        Email
                                     </th>
 
                                     <th
@@ -188,28 +190,28 @@ const deletePermission = (permission, index) => {
                             >
                                 <tr
                                     class="hover:bg-gray-100 dark:hover:bg-gray-700"
-                                    v-for="permission in permissions"
-                                    :key="permission.id"
+                                    v-for="user in users"
+                                    :key="user.id"
                                 >
                                     <td
-                                        class="max-w-sm p-4 pl-40 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400"
+                                        class="max-w-sm p-4 pl-40 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400 font-sansKhmer"
                                     >
-                                        {{ permission.id }}
+                                        {{ user.id }}
                                     </td>
                                     <td
-                                        class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                                        class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white font-sansKhmer"
                                     >
-                                        {{ permission.name }}
+                                        {{ user.name }}
+                                    </td>
+                                    <td
+                                        class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white font-sansKhmer"
+                                    >
+                                        {{ user.email }}
                                     </td>
 
                                     <td class="p-4 space-x-2 whitespace-nowrap">
                                         <Link
-                                            :href="
-                                                route(
-                                                    'permission.edit',
-                                                    permission.id
-                                                )
-                                            "
+                                            :href="route('user.edit', user.id)"
                                             class="inline-flex items-center px-3 py-2 mb-2 text-sm font-medium text-center text-green-600 bg-transparent border-2 border-green-700 rounded-lg hover:bg-green-700 focus:ring-4 focus:ring-white-300 dark:focus:ring-white-700 hover:text-white focus:outline-none focus:ring-green-300 me-2 dark:border-green-700 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-700 dark:focus:ring-green-500"
                                         >
                                             <svg
@@ -233,12 +235,7 @@ const deletePermission = (permission, index) => {
                                             ></Text>
                                         </Link>
                                         <button
-                                            @click="
-                                                deletePermission(
-                                                    permission,
-                                                    index
-                                                )
-                                            "
+                                            @click="deleteRole(user, index)"
                                             type="button"
                                             class="inline-flex items-center px-3 py-2 mb-2 text-sm font-medium text-center text-red-600 bg-transparent border-2 border-red-700 rounded-lg hover:bg-red-700 focus:ring-4 focus:ring-white-300 dark:focus:ring-white-700 hover:text-white focus:outline-none focus:ring-red-300 me-2 dark:border-red-700 dark:text-red-600 dark:hover:text-white dark:hover:bg-red-700 dark:focus:ring-red-600"
                                         >

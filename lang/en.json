@@ -11,6 +11,11 @@
     "createUser": "Create User",
     "updateUser": "Update user",
 
+    "Username": "Username",
+    "Email": "Email",
+    "Password": "Password",
+    "confirmPassword": "Confirm Password",
+
     "Role": "Role",
     "Permission": "Permission",
     "Add": "Add new",

@@ -48,7 +48,7 @@
                                         :href="route('role.index')"
                                         class="ml-1 text-gray-700 hover:text-primary-600 md:ml-2 dark:text-gray-300 dark:hover:text-white"
                                         ><Text
-                                            :message="$t('Role')"
+                                            :message="$t('Users')"
                                             class="mr-1"
                                         ></Text
                                     ></Link>
@@ -90,36 +90,104 @@
                 <h2
                     class="mb-4 text-xl font-bold text-gray-900 dark:text-white"
                 >
-                    <Text :message="$t('createRole')" class="mr-1"></Text>
+                    <Text :message="$t('createUser')" class="mr-1"></Text>
                 </h2>
                 <form @submit.prevent="create()">
-                    <div class="grid gap-4 mb-4">
-                        <div>
+                    <div class="grid gap-4 mb-4 md:grid-cols-6">
+                        <div class="col-span-6 sm:col-span-3">
                             <label
                                 for="name"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                ><Text :message="$t('Role')" class="mr-1"></Text
+                                ><Text
+                                    :message="$t('Username')"
+                                    class="mr-1"
+                                ></Text
                             ></label>
-                            <input
+                            <TextInput
+                                id="name"
                                 v-model="form.name"
                                 type="text"
-                                name="name"
-                                id="name"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 font-sansKhmer"
-                                required=""
+                                class="block w-full mt-1"
+                                required
+                                autofocus
+                                autocomplete="name"
                             />
                             <div v-if="form.errors.name" class="text-red-700">
                                 {{ form.errors.name }}
                             </div>
                         </div>
+                        <div class="col-span-6 sm:col-span-3">
+                            <label
+                                for="name"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                ><Text
+                                    :message="$t('Email')"
+                                    class="mr-1"
+                                ></Text
+                            ></label>
+                            <TextInput
+                                id="email"
+                                v-model="form.email"
+                                type="email"
+                                class="block w-full mt-1"
+                                required
+                                autocomplete="username"
+                            />
+                            <div v-if="form.errors.name" class="text-red-700">
+                                {{ form.errors.name }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid gap-4 mb-4 md:grid-cols-6">
+                        <div class="col-span-6 sm:col-span-3">
+                            <label
+                                for="name"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                ><Text
+                                    :message="$t('Password')"
+                                    class="mr-1"
+                                ></Text
+                            ></label>
+                            <TextInput
+                                id="password"
+                                v-model="form.password"
+                                type="password"
+                                class="block w-full mt-1"
+                                required
+                                autocomplete="new-password"
+                            />
+                            <div v-if="form.errors.name" class="text-red-700">
+                                {{ form.errors.name }}
+                            </div>
+                        </div>
+                        <div class="col-span-6 sm:col-span-3">
+                            <label
+                                for="name"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                ><Text
+                                    :message="$t('confirmPassword')"
+                                    class="mr-1"
+                                ></Text
+                            ></label>
+                            <TextInput
+                                id="password_confirmation"
+                                v-model="form.password_confirmation"
+                                type="password"
+                                class="block w-full mt-1"
+                                required
+                                autocomplete="new-password"
+                            />
+                            <div v-if="form.errors.name" class="text-red-700">
+                                {{ form.errors.name }}
+                            </div>
+                        </div>
+                    </div>
+                    <div>
                         <div>
                             <label
                                 for="permission"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                ><Text
-                                    :message="$t('Permission')"
-                                    class="mr-1"
-                                ></Text
+                                ><Text :message="$t('Role')" class="mr-1"></Text
                             ></label>
                             <VueMultiselect
                                 v-model="form.roles"
@@ -132,7 +200,7 @@
                             />
                         </div>
                     </div>
-                    <div class="flex items-center space-x-4">
+                    <div class="flex items-center mt-4 space-x-4">
                         <button
                             type="submit"
                             class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
@@ -151,17 +219,25 @@ import AdminLayout from "@/Layouts/AdminLayout.vue";
 import { useForm, Link } from "@inertiajs/vue3";
 import VueMultiselect from "vue-multiselect";
 import Text from "@/Components/Text.vue";
-
+import TextInput from "@/Components/TextInput.vue";
 
 defineProps({
     roles: Array,
 });
 
 const form = useForm({
-    name: null,
+    name: "",
+    email: "",
+    password: "",
+    password_confirmation: "",
     roles: [],
 });
 
-const create = () => form.post(route("user.store", {}));
+const create = () =>
+    form.post(
+        route("user.store", {
+            onFinish: () => form.reset("password", "password_confirmation"),
+        })
+    );
 </script>
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>

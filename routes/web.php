@@ -45,10 +45,7 @@ Route::get('/test', function () {
     return Inertia::render('Test');
 })->name('test');
 
-Route::resource('user', UserController::class)->except('show');
-Route::resource('role', RoleController::class)->except('show');
 
-Route::resource('permission', PermissionController::class)->except('show');
 
 Route::middleware([
     'auth:sanctum',
@@ -58,4 +55,7 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+    Route::resource('user', UserController::class)->except('show');
+    Route::resource('role', RoleController::class)->except('show');
+    Route::resource('permission', PermissionController::class)->except('show');
 });

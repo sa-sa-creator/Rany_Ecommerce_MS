@@ -29,7 +29,8 @@ class UserController extends Controller
     public function create()
     {
         return Inertia::render('Admin/User/Create',[
-            'roles' => RoleResource::collection(Role::all())
+            'roles' => RoleResource::collection(Role::all()),
+            
         ]);
     }
 

@@ -36,7 +36,7 @@ const deleteRole = (user, index) => {
 </script>
 
 <template>
-    <AdminLayout title="User | List">
+    <AdminLayout title="Role | List">
         <div
             class="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5 dark:bg-gray-800 dark:border-gray-700"
         >
@@ -120,7 +120,7 @@ const deleteRole = (user, index) => {
                     <h1
                         class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white"
                     >
-                        <Text :message="$t('allUser')" class="mr-1"></Text>
+                        <Text :message="$t('allRole')" class="mr-1"></Text>
                     </h1>
                 </div>
                 <div class="sm:flex">
@@ -208,6 +208,7 @@ const deleteRole = (user, index) => {
                                     >
                                         {{ user.email }}
                                     </td>
+
                                     <td class="p-4 space-x-2 whitespace-nowrap">
                                         <Link
                                             :href="route('user.edit', user.id)"
@@ -230,30 +231,6 @@ const deleteRole = (user, index) => {
                                             </svg>
                                             <Text
                                                 :message="$t('Edit')"
-                                                class="mr-1"
-                                            ></Text>
-                                        </Link>
-                                        <Link
-                                            :href="route('image.create', user.id)"
-                                            class="inline-flex items-center px-3 py-2 mb-2 text-sm font-medium text-center text-green-600 bg-transparent border-2 border-green-700 rounded-lg hover:bg-green-700 focus:ring-4 focus:ring-white-300 dark:focus:ring-white-700 hover:text-white focus:outline-none focus:ring-green-300 me-2 dark:border-green-700 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-700 dark:focus:ring-green-500"
-                                        >
-                                            <svg
-                                                class="w-4 h-4 mr-1"
-                                                fill="currentColor"
-                                                viewBox="0 0 20 20"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                            >
-                                                <path
-                                                    d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"
-                                                ></path>
-                                                <path
-                                                    fill-rule="evenodd"
-                                                    d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
-                                                    clip-rule="evenodd"
-                                                ></path>
-                                            </svg>
-                                            <Text
-                                                :message="$t('Images')"
                                                 class="mr-1"
                                             ></Text>
                                         </Link>

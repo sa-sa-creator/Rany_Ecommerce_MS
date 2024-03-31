@@ -82,11 +82,6 @@ const changeLocale = (item) => {
                         </svg>
                     </button>
                     <a href="#" class="flex ms-2 md:me-24">
-                        <img
-                            src="{{url('/images/logo.png')}}"
-                            class="h-8 mr-3"
-                            alt="FlowBite Logo"
-                        />
                         <span
                             class="self-center text-xl sm:text-2xl whitespace-nowrap dark:text-white font-lilitaOne"
                         >
@@ -739,7 +734,7 @@ const changeLocale = (item) => {
                                 :active="route().current('user.index')"
                                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                             >
-                                <SidebarText :message="$t('User')" />
+                                <SidebarText :message="$t('Users')" />
                             </SidebarLink>
                         </li>
                         <li>
